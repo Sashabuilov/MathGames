@@ -90,9 +90,25 @@
                 android:hint="Введите ответ"
                 android:inputType="number"
                 android:textAlignment="center"
-                android:textColorHint="@android:color/background_dark"
+                android:textColor="@android:color/background_dark"
+                android:textColorHint="@color/cardview_dark_background"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMotivation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
 
         <LinearLayout
@@ -133,21 +149,6 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tvMotivation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold|italic" />
         </LinearLayout>
 
         <LinearLayout

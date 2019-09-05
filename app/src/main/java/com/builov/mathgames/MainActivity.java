@@ -89,15 +89,19 @@ public class MainActivity extends AppCompatActivity {
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
-                tempAnswer = calculation.getAnswer();
-                int answer = Integer.parseInt(mEditTextAnswer.getText().toString());
-                if (answer == tempAnswer) {
-                    tvMotivation.setText("Правильно");
-                    mEditTextAnswer.setText("");
-                    initMathActions();
-                } else
-                    tvMotivation.setText("Не правильно!");
+                if (mEditTextAnswer.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(),"Введите ответ", Toast.LENGTH_SHORT).show();
+                } else {
+                    MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
+                    tempAnswer = calculation.getAnswer();
+                    int answer = Integer.parseInt(mEditTextAnswer.getText().toString());
+                    if (answer == tempAnswer) {
+                        tvMotivation.setText("Правильно");
+                        mEditTextAnswer.setText("");
+                        initMathActions();
+                    } else
+                        tvMotivation.setText("Не правильно!");
+                }
             }
         });
 
