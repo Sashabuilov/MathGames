@@ -18,22 +18,25 @@ public class MainActivity extends AppCompatActivity {
     TextView tvFirstMathNumber;
     TextView tvSecondMathNumber;
     TextView tvMathSign;
-    TextView tvMotivation;
+    TextView tvAnswer;
     EditText mEditTextAnswer;
     Button mButtonOk;
     Button mButtonHelp;
     Button mButtonDelete;
     Button[] btn = new Button[10];
+    
     private int firstNumber = 0;
     private int secondNumber = 0;
     private int intMathSign = 0;
     private int tempAnswer = 0;
     private int difficulty;
+    Boolean reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        reset = true;
         initUI();
         difficulty = getIntent().getIntExtra("difficulty", 0);
         initMathActions();
@@ -66,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         tvFirstMathNumber = findViewById(R.id.tvFirstNumber);
         tvSecondMathNumber = findViewById(R.id.tvSecondNumber);
         tvMathSign = findViewById(R.id.tvMathSign);
-        tvMotivation = findViewById(R.id.tvMotivation);
+        //tvMotivation = findViewById(R.id.tvMotivation);
+        tvAnswer = findViewById(R.id.tvAnswer);
+
         mButtonOk = findViewById(R.id.buttonOK);
         mButtonHelp = findViewById(R.id.buttonHelp);
         mButtonDelete = findViewById(R.id.buttonDelete);
@@ -89,18 +94,20 @@ public class MainActivity extends AppCompatActivity {
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEditTextAnswer.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(),"Введите ответ", Toast.LENGTH_SHORT).show();
+                if (tvAnswer.getText().toString().equals("?")) {
+                    Toast.makeText(getApplicationContext(), "Введите ответ", Toast.LENGTH_SHORT).show();
                 } else {
                     MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
                     tempAnswer = calculation.getAnswer();
-                    int answer = Integer.parseInt(mEditTextAnswer.getText().toString());
+                    int answer = Integer.parseInt(tvAnswer.getText().toString());
                     if (answer == tempAnswer) {
-                        tvMotivation.setText("Правильно");
-                        mEditTextAnswer.setText("");
+                        mEditTextAnswer.setText("Правильно");
+                        tvAnswer.setText("?");
+                        reset = true;
                         initMathActions();
                     } else
-                        tvMotivation.setText("Не правильно!");
+                        mEditTextAnswer.setText("Не правильно!");
+                    reset = true;
                 }
             }
         });
@@ -113,7 +120,18 @@ public class MainActivity extends AppCompatActivity {
         mButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvAnswer.setText("?");
+                reset = true;
                 mEditTextAnswer.setText("");
+            }
+        });
+
+        mButtonHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
+                tempAnswer = calculation.getAnswer();
+                Toast.makeText(getApplicationContext(),Integer.toString(tempAnswer),Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -122,7 +140,17 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEditTextAnswer.setText(mEditTextAnswer.getText() + button.getText().toString());
+                int i = Integer.parseInt(button.getText().toString());
+                mEditTextAnswer.setText("Нажмите ОК");
+
+                if (reset) {
+                    tvAnswer.setText("");
+                    tvAnswer.setText(Integer.toString(i));
+                    reset = false;
+                } else {
+                    tvAnswer.setText(tvAnswer.getText() + button.getText().toString());
+                }
+
             }
         });
     }

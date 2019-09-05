@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -20,44 +21,48 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         initUI();
         initView();
+
     }
 
-    private void initUI(){
+    private void initUI() {
         mButtonOk = findViewById(R.id.buttonOK);
+
         RadioButton radioButtonEasy = findViewById(R.id.rbEasy);
-        radioButtonEasy.setOnClickListener(radioButtonClickListener);
         radioButtonEasy.setChecked(true);
-        RadioButton radioButtonNormal = findViewById(R.id.rbNormal);
-        radioButtonNormal.setOnClickListener(radioButtonClickListener);
-        RadioButton radioButtonHard = findViewById(R.id.rbHard);
-        radioButtonHard.setOnClickListener(radioButtonClickListener);
-        RadioButton radioButtonVeryHard = findViewById(R.id.rbVeryHard);
-        radioButtonVeryHard.setOnClickListener(radioButtonClickListener);
-    }
-    private void initView(){
-        radioButtonClickListener = new View.OnClickListener() {
+        radioButtonEasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RadioButton radioButton = (RadioButton) v;
-                switch (radioButton.getId()) {
-                    case R.id.rbEasy:
-                        difficulty = 1;
-                        break;
-                    case R.id.rbNormal:
-                        difficulty = 2;
-                        break;
-                    case R.id.rbHard:
-                        difficulty = 3;
-                        break;
-                    case R.id.rbVeryHard:
-                        difficulty = 4;
-                        break;
-                    default:
-                        break;
-                }
+                difficulty = 1;
             }
-        };
+        });
 
+        RadioButton radioButtonNormal = findViewById(R.id.rbNormal);
+        radioButtonNormal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                difficulty = 2;
+            }
+        });
+
+        RadioButton radioButtonHard = findViewById(R.id.rbHard);
+        radioButtonHard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                difficulty = 3;
+            }
+        });
+
+        RadioButton radioButtonVeryHard = findViewById(R.id.rbVeryHard);
+        radioButtonVeryHard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                difficulty=4;
+            }
+        });
+    }
+
+
+    private void initView() {
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
