@@ -2,8 +2,10 @@ package com.builov.mathgames;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.Snackbar;
@@ -26,13 +28,19 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
+    ConstraintLayout mConstraintLayout;
+
     TextView tvFirstMathNumber;
     TextView tvSecondMathNumber;
     TextView tvMathSign;
     TextView tvAnswer;
     TextView tvHintCount;
     TextView tvVersion;
+    TextView tvEquals;
+    TextView tvHintTitle;
+
     EditText mEditTextAnswer;
+
     Button mButtonOk;
     Button mButtonHelp;
     Button mButtonDelete;
@@ -44,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private int tempAnswer;
     private int difficulty;
     private int hintCount;
+    private int numberOfCorrectAnswers = 0;
 
     private Thread secondThread;
     private Handler mHandler = new Handler();
@@ -57,12 +66,14 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-
-        String VERSION = "0.4.3";
-
+        String theme = getIntent().getStringExtra("theme");
+        String VERSION = "0.5.0";
         reset = true;
         initUI();
+
+        if (theme.equals("Black")) {
+            setBlackTheme();
+        } else setWhiteTheme();
 
         mHandler = new Handler() {
 
@@ -144,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
         btn[7] = findViewById(R.id.btn7);
         btn[8] = findViewById(R.id.btn8);
         btn[9] = findViewById(R.id.btn9);
+
+        //элементы для смены темы
+        mConstraintLayout = findViewById(R.id.main_Activity_Constaint);
+        tvEquals = findViewById(R.id.textView5);
+        tvHintTitle = findViewById(R.id.tvHintTitle);
     }
 
     private void initButtonActions() {
@@ -168,6 +184,14 @@ public class MainActivity extends AppCompatActivity {
                         mEditTextAnswer.setText("Правильно");
                         tvAnswer.setText("?");
 
+                        numberOfCorrectAnswers++;
+                        if (numberOfCorrectAnswers == 5) {
+                            hintCount = hintCount + 1;
+                            numberOfCorrectAnswers = 0;
+                            Snackbar.make(v,"ПОДСКАЗКИ +1",Snackbar.LENGTH_SHORT).show();
+                            tvHintCount.setText(Integer.toString(hintCount));
+                        }
+
                         secondThread = new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -183,11 +207,13 @@ public class MainActivity extends AppCompatActivity {
                         reset = true;
                         //....и запускается новый рандом и ожидается новый ввод ответа
                         initMathActions();
-                    } else
+                    } else {
 
                         //если ответы от вычислений не равны, выводится сообщение что юзер ошибся
                         mEditTextAnswer.setText("Не правильно!");
-                    reset = true;
+                        numberOfCorrectAnswers = 0;
+                        reset = true;
+                    }
                 }
             }
         });
@@ -265,5 +291,31 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    public void setBlackTheme() {
+        mConstraintLayout.setBackgroundColor(getResources().getColor(R.color.colorMaterialBlack));
+        tvFirstMathNumber.setTextColor(Color.WHITE);
+        tvMathSign.setTextColor(Color.WHITE);
+        tvSecondMathNumber.setTextColor(Color.WHITE);
+        mEditTextAnswer.setHintTextColor(Color.WHITE);
+        mEditTextAnswer.setTextColor(Color.WHITE);
+        tvEquals.setTextColor(Color.WHITE);
+        tvHintTitle.setTextColor(Color.WHITE);
+        tvHintCount.setTextColor(Color.WHITE);
+        tvVersion.setTextColor(Color.WHITE);
+    }
+
+    private void setWhiteTheme() {
+        mConstraintLayout.setBackgroundColor(Color.WHITE);
+        tvFirstMathNumber.setTextColor(Color.BLACK);
+        tvMathSign.setTextColor(Color.BLACK);
+        tvSecondMathNumber.setTextColor(Color.BLACK);
+        mEditTextAnswer.setHintTextColor(getResources().getColor(R.color.hintGray));
+        mEditTextAnswer.setTextColor(Color.BLACK);
+        tvEquals.setTextColor(Color.BLACK);
+        tvHintTitle.setTextColor(Color.BLACK);
+        tvHintCount.setTextColor(Color.BLACK);
+        tvVersion.setTextColor(Color.BLACK);
     }
 }
