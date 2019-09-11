@@ -1,26 +1,32 @@
 package com.builov.mathgames;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
+
+import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
 
 
     int difficulty = 1;
     Button mButtonOk;
-    View.OnClickListener radioButtonClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_settings);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         initUI();
         initView();
-
     }
 
     private void initUI() {
@@ -55,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         radioButtonVeryHard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                difficulty=4;
+                difficulty = 4;
             }
         });
     }

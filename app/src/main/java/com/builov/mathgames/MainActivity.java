@@ -1,5 +1,6 @@
 package com.builov.mathgames;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +21,7 @@ import com.builov.mathgames.MathActions.CheckRepet;
 import com.builov.mathgames.MathActions.MathCalculation;
 import com.builov.mathgames.MathActions.MathRandomizer;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,24 +38,28 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonDelete;
     Button[] btn = new Button[10];
 
-    private int firstNumber = 0;
-    private int secondNumber = 0;
-    private int intMathSign = 0;
-    private int tempAnswer = 0;
+    private int firstNumber;
+    private int secondNumber;
+    private int intMathSign;
+    private int tempAnswer;
     private int difficulty;
     private int hintCount;
 
-    Thread secondThread;
+    private Thread secondThread;
     private Handler mHandler = new Handler();
 
-    Boolean reset;
+    private Boolean reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        String VERSION = "0.4.2";
+
+        String VERSION = "0.4.3";
 
         reset = true;
         initUI();
@@ -113,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+
+        //"Связывание" UI элементов с обьектами кода
         tvFirstMathNumber = findViewById(R.id.tvFirstNumber);
         tvSecondMathNumber = findViewById(R.id.tvSecondNumber);
         tvMathSign = findViewById(R.id.tvMathSign);
@@ -138,15 +148,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void initButtonActions() {
 
+        //кнопка ОК
         mButtonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //если юзер пытается нажать ОК без введенного ответа
                 if (tvAnswer.getText().toString().equals("?")) {
                     Snackbar.make(v, "ВВЕДИТЕ ОТВЕТ", Snackbar.LENGTH_SHORT).show();
                 } else {
+
+                    //получаем ответ от вычислений
                     MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
                     tempAnswer = calculation.getAnswer();
+                    //сверяем ответ от вычислений с тем что ввел юзер
                     int answer = Integer.parseInt(tvAnswer.getText().toString());
+                    //если ответы равны, значит введен правильный ответ....
                     if (answer == tempAnswer) {
                         mEditTextAnswer.setText("Правильно");
                         tvAnswer.setText("?");
@@ -164,15 +181,18 @@ public class MainActivity extends AppCompatActivity {
                         });
                         secondThread.start();
                         reset = true;
+                        //....и запускается новый рандом и ожидается новый ввод ответа
                         initMathActions();
                     } else
+
+                        //если ответы от вычислений не равны, выводится сообщение что юзер ошибся
                         mEditTextAnswer.setText("Не правильно!");
                     reset = true;
                 }
             }
         });
 
-        //метод ввода чисел
+        //метод обработки кнопок с цифрами
         for (int i = 0; i <= 9; i++) {
             onClick(btn[i]);
         }
@@ -204,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //обоаботка клика кнопок с цифрами
     private void onClick(final Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 int i = Integer.parseInt(button.getText().toString());
                 mEditTextAnswer.setText("Нажмите ОК");
 
+                //проверка на ввод двух и более нулей (запрет ввода)
                 if (tvAnswer.getText().toString().equals("0")) {
                     tvAnswer.setText(button.getText().toString());
                 } else if (reset) {
@@ -225,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //обработка телефонной кнопки НАЗАД
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -243,5 +266,4 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
 }
