@@ -1,6 +1,7 @@
 package com.builov.mathgames;
 
 import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import com.builov.mathgames.MathActions.CheckRepet;
 import com.builov.mathgames.MathActions.MathCalculation;
 import com.builov.mathgames.MathActions.MathRandomizer;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private int hintCount;
 
     Thread secondThread;
-    Handler mHandler = new Handler();
-
+    private Handler mHandler = new Handler();
 
     Boolean reset;
 
@@ -46,13 +48,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        double VERSION = 0.4;
+        String VERSION = "0.4.1";
 
         reset = true;
         initUI();
 
+        mHandler = new Handler(){
 
-        tvVersion.setText("v." + Double.toString(VERSION));
+            public void handleMessage(Message msg){
+                super.handleMessage(msg);
+                mEditTextAnswer.setText("");
+            }
+        };
+
+        tvVersion.setText("v." + VERSION);
         difficulty = getIntent().getIntExtra("difficulty", 0);
 
         switch (difficulty) {
@@ -138,6 +147,19 @@ public class MainActivity extends AppCompatActivity {
                     if (answer == tempAnswer) {
                         mEditTextAnswer.setText("Правильно");
                         tvAnswer.setText("?");
+
+                        secondThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    TimeUnit.MILLISECONDS.sleep(700);
+                                    mHandler.sendEmptyMessage(0);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        secondThread.start();
                         reset = true;
                         initMathActions();
                     } else
