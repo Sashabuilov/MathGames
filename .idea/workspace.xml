@@ -59,7 +59,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="55" />
-          <entry key="java" value="1909" />
+          <entry key="java" value="2266" />
           <entry key="txt" value="100" />
           <entry key="xml" value="66" />
         </counts>
@@ -67,7 +67,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="55" />
-          <entry key="JAVA" value="1909" />
+          <entry key="JAVA" value="2266" />
           <entry key="PLAIN_TEXT" value="100" />
           <entry key="XML" value="66" />
         </counts>
@@ -79,21 +79,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="156" column="67" selection-start-line="156" selection-start-column="67" selection-end-line="156" selection-end-column="67" />
+            <state relative-caret-position="383">
+              <caret line="244" column="4" selection-end-line="247" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1423#1585#0" expanded="true" />
-                <element signature="e#1584#1585#0" expanded="true" />
+                <element signature="method#onCreate#0;class#MainActivity#0" />
                 <element signature="method#initMathActions#0;class#MainActivity#0" />
                 <element signature="method#initUI#0;class#MainActivity#0" />
-                <element signature="e#4044#5572#0" expanded="true" />
-                <element signature="e#4987#5178#0" expanded="true" />
-                <element signature="e#5177#5178#0" expanded="true" />
-                <element signature="e#5571#5572#0" expanded="true" />
+                <element signature="method#initButtonActions#0;class#MainActivity#0" />
+                <element signature="e#4382#5897#0" expanded="true" />
+                <element signature="e#5109#5599#0" expanded="true" />
+                <element signature="e#5598#5599#0" expanded="true" />
+                <element signature="e#5896#5897#0" expanded="true" />
                 <element signature="method#onClick#0;class#MainActivity#0" />
-                <element signature="e#6786#7458#0" expanded="true" />
-                <element signature="e#7457#7458#0" expanded="true" />
+                <element signature="e#7113#7792#0" expanded="true" />
+                <element signature="e#7791#7792#0" expanded="true" />
+                <element signature="e#8022#8250#0" expanded="true" />
+                <element signature="e#8249#8250#0" expanded="true" />
+                <element signature="e#8277#8464#0" expanded="true" />
+                <element signature="e#8463#8464#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -298,9 +301,9 @@
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Build" order="6" weight="0.24657534" />
+      <window_info active="true" anchor="bottom" id="Build" order="6" visible="true" weight="0.24657534" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32876712" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.32876712" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -379,21 +382,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="156" column="67" selection-start-line="156" selection-start-column="67" selection-end-line="156" selection-end-column="67" />
+        <state relative-caret-position="383">
+          <caret line="244" column="4" selection-end-line="247" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1423#1585#0" expanded="true" />
-            <element signature="e#1584#1585#0" expanded="true" />
+            <element signature="method#onCreate#0;class#MainActivity#0" />
             <element signature="method#initMathActions#0;class#MainActivity#0" />
             <element signature="method#initUI#0;class#MainActivity#0" />
-            <element signature="e#4044#5572#0" expanded="true" />
-            <element signature="e#4987#5178#0" expanded="true" />
-            <element signature="e#5177#5178#0" expanded="true" />
-            <element signature="e#5571#5572#0" expanded="true" />
+            <element signature="method#initButtonActions#0;class#MainActivity#0" />
+            <element signature="e#4382#5897#0" expanded="true" />
+            <element signature="e#5109#5599#0" expanded="true" />
+            <element signature="e#5598#5599#0" expanded="true" />
+            <element signature="e#5896#5897#0" expanded="true" />
             <element signature="method#onClick#0;class#MainActivity#0" />
-            <element signature="e#6786#7458#0" expanded="true" />
-            <element signature="e#7457#7458#0" expanded="true" />
+            <element signature="e#7113#7792#0" expanded="true" />
+            <element signature="e#7791#7792#0" expanded="true" />
+            <element signature="e#8022#8250#0" expanded="true" />
+            <element signature="e#8249#8250#0" expanded="true" />
+            <element signature="e#8277#8464#0" expanded="true" />
+            <element signature="e#8463#8464#0" expanded="true" />
           </folding>
         </state>
       </provider>
