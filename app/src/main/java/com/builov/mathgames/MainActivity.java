@@ -16,9 +16,11 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.builov.mathgames.Dialogs.Dialog_Settings;
 import com.builov.mathgames.MathActions.CheckRepet;
 import com.builov.mathgames.MathActions.MathCalculation;
 import com.builov.mathgames.MathActions.MathRandomizer;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonDelete;
     Button[] btn = new Button[10];
 
+    ImageButton mButtonSettings;
+
     private int firstNumber;
     private int secondNumber;
     private int intMathSign;
@@ -53,11 +57,14 @@ public class MainActivity extends AppCompatActivity {
     private int difficulty;
     private int hintCount;
     private int numberOfCorrectAnswers = 0;
-
     private Thread secondThread;
     private Handler mHandler = new Handler();
 
     private Boolean reset;
+
+    Dialog_Settings settings_dialog;
+
+    private String theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +73,11 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        String theme = getIntent().getStringExtra("theme");
-        String VERSION = "0.5.0";
+        theme = getIntent().getStringExtra("theme");
+        String VERSION = "0.5.2";
         reset = true;
         initUI();
+        settings_dialog=new Dialog_Settings();
 
         if (theme.equals("Black")) {
             setBlackTheme();
@@ -155,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
         btn[7] = findViewById(R.id.btn7);
         btn[8] = findViewById(R.id.btn8);
         btn[9] = findViewById(R.id.btn9);
+
+        mButtonSettings = findViewById(R.id.button_Settings);
 
         //элементы для смены темы
         mConstraintLayout = findViewById(R.id.main_Activity_Constaint);
@@ -248,6 +258,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        mButtonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settings_dialog.show(getSupportFragmentManager(),"dialog");
+                //settings_dialog.show(getFragmentManager(), "dlg2");
+            }
+        });
     }
 
     //обоаботка клика кнопок с цифрами
@@ -291,6 +310,13 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Toast.makeText(getApplicationContext(),"На паузе", Toast.LENGTH_SHORT).show();
     }
 
     public void setBlackTheme() {

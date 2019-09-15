@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageButton
+        android:id="@+id/button_Settings"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/settings"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -113,7 +123,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@android:color/holo_orange_light"
+                android:background="#FFD75E"
                 android:text="OK"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -124,7 +134,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@android:color/holo_orange_light"
+                android:background="#FFD75E"
                 android:text="Подсказка"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -135,7 +145,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@android:color/holo_orange_light"
+                android:background="#FFD75E"
                 android:text="Удалить"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -159,7 +169,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="1"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -170,7 +180,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="2"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -181,7 +191,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -199,7 +209,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="4"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -210,7 +220,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="5"
                     android:textSize="18sp" />
 
@@ -220,7 +230,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="6"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -238,7 +248,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="7"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -249,7 +259,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="8"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -260,7 +270,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="9"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -278,7 +288,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_orange_light"
+                    android:background="#FFD75E"
                     android:text="0"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -298,15 +308,15 @@
                 android:id="@+id/tvHintTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Подсказки:  "
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="Колличество подсказок: "
+                android:textSize="14sp"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/tvHintCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="5" />
 

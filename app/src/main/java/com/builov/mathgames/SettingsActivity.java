@@ -30,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
     TextView tvHeader;
 
     RadioGroup mRadioGroup;
+    RadioGroup mRadioGroup2;
     RadioButton radioButtonEasy;
     RadioButton radioButtonNormal;
     RadioButton radioButtonHard;
@@ -85,6 +86,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 difficulty = 1;
+                mRadioGroup2.clearCheck();
             }
         });
 
@@ -93,6 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 difficulty = 2;
+                mRadioGroup2.clearCheck();
             }
         });
 
@@ -101,6 +104,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 difficulty = 3;
+                mRadioGroup.clearCheck();
+
             }
         });
 
@@ -109,12 +114,14 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 difficulty = 4;
+                mRadioGroup.clearCheck();
             }
         });
 
         mSwitch = findViewById(R.id.switch1);
         mConstraintLayout = findViewById(R.id.configBase);
-        mRadioGroup = findViewById(R.id.radioGroup);
+        mRadioGroup = findViewById(R.id.radioGroup1);
+        mRadioGroup2 = findViewById(R.id.radioGroup2);
         maintHolder = findViewById(R.id.main_Holder);
         mCardView = findViewById(R.id.cardHolder);
 
