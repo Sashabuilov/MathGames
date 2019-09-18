@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
+
 import com.builov.mathgames.R;
 
 public class Dialog_Settings extends DialogFragment {
@@ -31,6 +34,15 @@ public class Dialog_Settings extends DialogFragment {
                 dismiss();
             }
         });
+
+        switchTheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                }
+            }
+        });
+
         return v;
     }
 }

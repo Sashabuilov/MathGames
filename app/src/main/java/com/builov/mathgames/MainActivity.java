@@ -1,6 +1,5 @@
 package com.builov.mathgames;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Handler;
@@ -13,17 +12,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebChromeClient;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.builov.mathgames.Dialogs.Dialog_Settings;
-import com.builov.mathgames.MathActions.CheckRepet;
-import com.builov.mathgames.MathActions.MathCalculation;
-import com.builov.mathgames.MathActions.MathRandomizer;
+import com.builov.mathgames.MathActions.MathCore;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -66,22 +64,28 @@ public class MainActivity extends AppCompatActivity {
 
     private String theme;
 
+
+    MathCore mathCore = new MathCore();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
         theme = getIntent().getStringExtra("theme");
+
         String VERSION = "0.5.2";
         reset = true;
+        settings_dialog = new Dialog_Settings();
         initUI();
-        settings_dialog=new Dialog_Settings();
 
-        if (theme.equals("Black")) {
-            setBlackTheme();
-        } else setWhiteTheme();
+
+
+        if (theme.equals("Black")) {setBlackTheme();}
+        else {setWhiteTheme();}
 
         mHandler = new Handler() {
 
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvVersion.setText("v." + VERSION);
         difficulty = getIntent().getIntExtra("difficulty", 0);
+        mathCore.mathRandomizer(difficulty);
 
         switch (difficulty) {
             case 1:
@@ -117,19 +122,20 @@ public class MainActivity extends AppCompatActivity {
         initButtonActions();
     }
 
+
+    //методы получения чисел
     public void initMathActions() {
 
         Boolean needRandom;
 
-        MathRandomizer randomizer = new MathRandomizer(difficulty);
-        firstNumber = randomizer.getFrist();
-        secondNumber = randomizer.getSecond();
-        intMathSign = randomizer.getMathSignInt();
-        String mathSign = randomizer.getMathSign();
+        mathCore.mathRandomizer(difficulty);
+        firstNumber = mathCore.getFrist();
+        secondNumber = mathCore.getSecond();
+        intMathSign = mathCore.getMathSignInt();
+        String mathSign = mathCore.getMathSign();
 
-        CheckRepet checkRepet = new CheckRepet(firstNumber, secondNumber, intMathSign);
-        checkRepet.check();
-        needRandom = checkRepet.getNeedRandom();
+
+        needRandom = MathCore.needRandom(firstNumber, secondNumber, intMathSign);
         if (needRandom) {
             initMathActions();
         } else {
@@ -139,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //инициализация UI элементов
     private void initUI() {
 
         //"Связывание" UI элементов с обьектами кода
@@ -172,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
         tvHintTitle = findViewById(R.id.tvHintTitle);
     }
 
+    //обработка нажатия UI кнопок
     private void initButtonActions() {
 
         //кнопка ОК
@@ -183,10 +191,8 @@ public class MainActivity extends AppCompatActivity {
                 if (tvAnswer.getText().toString().equals("?")) {
                     Snackbar.make(v, "ВВЕДИТЕ ОТВЕТ", Snackbar.LENGTH_SHORT).show();
                 } else {
-
                     //получаем ответ от вычислений
-                    MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
-                    tempAnswer = calculation.getAnswer();
+                    tempAnswer = MathCore.calculate(firstNumber, secondNumber, intMathSign);
                     //сверяем ответ от вычислений с тем что ввел юзер
                     int answer = Integer.parseInt(tvAnswer.getText().toString());
                     //если ответы равны, значит введен правильный ответ....
@@ -198,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                         if (numberOfCorrectAnswers == 5) {
                             hintCount = hintCount + 1;
                             numberOfCorrectAnswers = 0;
-                            Snackbar.make(v,"ПОДСКАЗКИ +1",Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(v, "ПОДСКАЗКИ +1", Snackbar.LENGTH_SHORT).show();
                             tvHintCount.setText(Integer.toString(hintCount));
                         }
 
@@ -230,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
 
         //метод обработки кнопок с цифрами
         for (int i = 0; i <= 9; i++) {
-            onClick(btn[i]);
+            onNumeralClick(btn[i]);
         }
 
         //кнопка УДАЛИТЬ
@@ -250,8 +256,7 @@ public class MainActivity extends AppCompatActivity {
                 if (hintCount == 0) {
                     tvHintCount.setText("ПОДСКАЗКИ НЕ ДОСТУПНЫ");
                 } else {
-                    MathCalculation calculation = new MathCalculation(firstNumber, secondNumber, intMathSign);
-                    tempAnswer = calculation.getAnswer();
+                    tempAnswer = MathCore.calculate(firstNumber, secondNumber, intMathSign);//calculation.getAnswer();
                     Snackbar.make(v, Integer.toString(tempAnswer), Snackbar.LENGTH_SHORT).show();
                     hintCount = hintCount - 1;
                     tvHintCount.setText(Integer.toString(hintCount));
@@ -260,17 +265,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //копка НАСТРОЙКИ
         mButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                settings_dialog.show(getSupportFragmentManager(),"dialog");
-                //settings_dialog.show(getFragmentManager(), "dlg2");
+                settings_dialog.show(getSupportFragmentManager(), "dialog");
             }
         });
     }
 
     //обоаботка клика кнопок с цифрами
-    private void onClick(final Button button) {
+    private void onNumeralClick(final Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -285,7 +290,11 @@ public class MainActivity extends AppCompatActivity {
                     tvAnswer.setText(Integer.toString(i));
                     reset = false;
                 } else {
-                    tvAnswer.setText(tvAnswer.getText() + button.getText().toString());
+                    if (tvAnswer.length() <= 2) {
+                        tvAnswer.setText(tvAnswer.getText() + button.getText().toString());
+                    } else {
+                        Snackbar.make(v, "СЛИШКОМ БОЛЬШОЕ ЧИСЛО", Snackbar.LENGTH_SHORT).show();
+                    }
                 }
 
             }
@@ -310,13 +319,6 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        Toast.makeText(getApplicationContext(),"На паузе", Toast.LENGTH_SHORT).show();
     }
 
     public void setBlackTheme() {
