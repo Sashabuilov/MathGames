@@ -15,13 +15,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Dialogs/Dialog_Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Dialogs/Dialog_Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Dialogs/Dialog_Settings.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/Calculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/CheckRepet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCalculation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathRandomizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/RandomValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/StartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +31,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -40,35 +44,36 @@
     <session id="1279461058">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="2" />
-          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="3" />
-          <entry key="java" value="41" />
-          <entry key="xml" value="24" />
+          <entry key="java" value="46" />
+          <entry key="xml" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="41" />
-          <entry key="XML" value="24" />
+          <entry key="JAVA" value="46" />
+          <entry key="XML" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="dummy" value="12" />
           <entry key="gradle" value="55" />
-          <entry key="java" value="6730" />
+          <entry key="java" value="7393" />
           <entry key="txt" value="300" />
           <entry key="xml" value="275" />
         </counts>
@@ -76,8 +81,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="55" />
-          <entry key="JAVA" value="6730" />
-          <entry key="PLAIN_TEXT" value="300" />
+          <entry key="JAVA" value="7393" />
+          <entry key="PLAIN_TEXT" value="312" />
           <entry key="XML" value="275" />
         </counts>
       </usages-collector>
@@ -85,16 +90,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="247" selection-start-line="247" selection-end-line="247" />
+            <state relative-caret-position="203">
+              <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
               <folding>
+                <element signature="method#onCreate#0;class#MainActivity#0" />
+                <element signature="e#2468#2648#0" expanded="true" />
+                <element signature="e#2647#2648#0" expanded="true" />
                 <element signature="method#initMathActions#0;class#MainActivity#0" />
-                <element signature="e#9425#10258#0" expanded="true" />
-                <element signature="e#10257#10258#0" expanded="true" />
+                <element signature="method#initUI#0;class#MainActivity#0" />
+                <element signature="method#initButtonActions#0;class#MainActivity#0" />
+                <element signature="e#5649#8038#0" expanded="true" />
+                <element signature="e#6984#7474#0" expanded="true" />
+                <element signature="e#7473#7474#0" expanded="true" />
+                <element signature="e#8037#8038#0" expanded="true" />
+                <element signature="e#8237#8467#0" expanded="true" />
+                <element signature="e#8466#8467#0" expanded="true" />
+                <element signature="e#8537#9134#0" expanded="true" />
+                <element signature="e#9133#9134#0" expanded="true" />
+                <element signature="method#onNumeralClick#0;class#MainActivity#0" />
+                <element signature="e#9539#10489#0" expanded="true" />
+                <element signature="e#10488#10489#0" expanded="true" />
                 <element signature="method#onBackPressed#0;class#MainActivity#0" />
+                <element signature="e#10759#10987#0" expanded="true" />
+                <element signature="e#10986#10987#0" expanded="true" />
+                <element signature="e#11014#11201#0" expanded="true" />
+                <element signature="e#11200#11201#0" expanded="true" />
                 <element signature="method#setBlackTheme#0;class#MainActivity#0" />
                 <element signature="method#setWhiteTheme#0;class#MainActivity#0" />
               </folding>
@@ -102,41 +125,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Dialogs/Dialog_Settings.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="413">
+              <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1210#1422#0" expanded="true" />
-                <element signature="e#1421#1422#0" expanded="true" />
+                <element signature="method#getMathSign#0;class#MathCore#0" />
+                <element signature="method#mathRandomizer#0;class#MathCore#0" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/SettingsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="79" column="26" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
-              <folding>
-                <element signature="method#initUI#0;class#SettingsActivity#0" />
-                <element signature="method#initView#0;class#SettingsActivity#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_settings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -146,6 +145,7 @@
       <list>
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -176,7 +176,6 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
@@ -185,9 +184,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/Calculator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathRandomizer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCoreHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Interface/dialogClick.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Interface/themeChangerDialogListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Dialogs/Dialog_Settings.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java" />
       </list>
     </option>
   </component>
@@ -203,6 +205,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -226,18 +230,7 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="mathgames" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Dialogs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MathGames" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="MathGames" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="MathActions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -254,8 +247,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -354,6 +345,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1987076" />
@@ -363,7 +355,6 @@
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Find" weight="0.32876712" />
       <window_info anchor="bottom" id="Logcat" order="0" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Debug" order="2" />
@@ -373,9 +364,10 @@
       <window_info anchor="bottom" id="Build" order="6" weight="0.24520548" />
       <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32876712" />
       <window_info anchor="bottom" id="Run" order="8" weight="0.3260274" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.32876712" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Gradle" order="2" weight="0.32956383" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Preview" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
@@ -404,12 +396,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_settings_old.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -425,84 +417,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="136" column="16" selection-start-line="136" selection-start-column="16" selection-end-line="136" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/RandomValidator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="12" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/Calculator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathRandomizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-          <folding>
-            <element signature="e#1200#1201#0" expanded="true" />
-            <element signature="e#1228#1229#0" expanded="true" />
-            <element signature="method#getMathSign#0;class#MathRandomizer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding>
-            <element signature="method#getMathSign#0;class#MathCore#0" />
-            <element signature="e#1293#1294#0" expanded="true" />
-            <element signature="e#1322#1323#0" expanded="true" />
-            <element signature="method#mathRandomizer#0;class#MathCore#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCalculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/CheckRepet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/RandomValidator.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/Calculator.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathRandomizer.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCalculation.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/CheckRepet.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/SettingsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/StartActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="79" column="26" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
@@ -513,29 +441,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_settings.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Interface/themeChangerDialogListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/Dialogs/Dialog_Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="525">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1210#1422#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
+            <element signature="e#1197#1400#0" expanded="true" />
+            <element signature="e#1399#1400#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="126" column="16" selection-start-line="126" selection-start-column="16" selection-end-line="126" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="247" selection-start-line="247" selection-end-line="247" />
+        <state relative-caret-position="203">
+          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
           <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" />
+            <element signature="e#2468#2648#0" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
             <element signature="method#initMathActions#0;class#MainActivity#0" />
-            <element signature="e#9425#10258#0" expanded="true" />
-            <element signature="e#10257#10258#0" expanded="true" />
+            <element signature="method#initUI#0;class#MainActivity#0" />
+            <element signature="method#initButtonActions#0;class#MainActivity#0" />
+            <element signature="e#5649#8038#0" expanded="true" />
+            <element signature="e#6984#7474#0" expanded="true" />
+            <element signature="e#7473#7474#0" expanded="true" />
+            <element signature="e#8037#8038#0" expanded="true" />
+            <element signature="e#8237#8467#0" expanded="true" />
+            <element signature="e#8466#8467#0" expanded="true" />
+            <element signature="e#8537#9134#0" expanded="true" />
+            <element signature="e#9133#9134#0" expanded="true" />
+            <element signature="method#onNumeralClick#0;class#MainActivity#0" />
+            <element signature="e#9539#10489#0" expanded="true" />
+            <element signature="e#10488#10489#0" expanded="true" />
             <element signature="method#onBackPressed#0;class#MainActivity#0" />
+            <element signature="e#10759#10987#0" expanded="true" />
+            <element signature="e#10986#10987#0" expanded="true" />
+            <element signature="e#11014#11201#0" expanded="true" />
+            <element signature="e#11200#11201#0" expanded="true" />
             <element signature="method#setBlackTheme#0;class#MainActivity#0" />
             <element signature="method#setWhiteTheme#0;class#MainActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/builov/mathgames/MathActions/MathCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+          <folding>
+            <element signature="method#getMathSign#0;class#MathCore#0" />
+            <element signature="method#mathRandomizer#0;class#MathCore#0" />
           </folding>
         </state>
       </provider>

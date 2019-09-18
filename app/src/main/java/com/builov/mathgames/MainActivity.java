@@ -13,16 +13,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.builov.mathgames.Dialogs.Dialog_Settings;
 import com.builov.mathgames.MathActions.MathCore;
-
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -46,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonDelete;
     Button[] btn = new Button[10];
 
-    ImageButton mButtonSettings;
-
     private int firstNumber;
     private int secondNumber;
     private int intMathSign;
@@ -57,14 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private int numberOfCorrectAnswers = 0;
     private Thread secondThread;
     private Handler mHandler = new Handler();
-
     private Boolean reset;
-
-    Dialog_Settings settings_dialog;
-
-    private String theme;
-
-
     MathCore mathCore = new MathCore();
 
     @Override
@@ -75,17 +60,18 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        theme = getIntent().getStringExtra("theme");
+        String theme = getIntent().getStringExtra("theme");
 
-        String VERSION = "0.5.2";
+        String VERSION = "0.6";
         reset = true;
-        settings_dialog = new Dialog_Settings();
         initUI();
 
 
-
-        if (theme.equals("Black")) {setBlackTheme();}
-        else {setWhiteTheme();}
+        if (theme.equals("Black")) {
+            setBlackTheme();
+        } else {
+            setWhiteTheme();
+        }
 
         mHandler = new Handler() {
 
@@ -117,11 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 tvHintCount.setText("ПОДСКАЗКИ НЕ ДОСТУПНЫ");
                 break;
         }
-
         initMathActions();
         initButtonActions();
     }
-
 
     //методы получения чисел
     public void initMathActions() {
@@ -170,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
         btn[7] = findViewById(R.id.btn7);
         btn[8] = findViewById(R.id.btn8);
         btn[9] = findViewById(R.id.btn9);
-
-        mButtonSettings = findViewById(R.id.button_Settings);
 
         //элементы для смены темы
         mConstraintLayout = findViewById(R.id.main_Activity_Constaint);
@@ -261,15 +243,6 @@ public class MainActivity extends AppCompatActivity {
                     hintCount = hintCount - 1;
                     tvHintCount.setText(Integer.toString(hintCount));
                 }
-            }
-        });
-
-
-        //копка НАСТРОЙКИ
-        mButtonSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                settings_dialog.show(getSupportFragmentManager(), "dialog");
             }
         });
     }

@@ -8,7 +8,6 @@ public class MathCore {
     private int frist;
     private int second;
     private int mathSignInt;
-    private boolean needRandom;
 
     public static int calculate(int first, int second, int mathSignInt) {
         switch (mathSignInt) {

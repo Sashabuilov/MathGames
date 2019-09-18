@@ -17,10 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Objects;
-public class SettingsActivity extends AppCompatActivity {
+public class StartActivity extends AppCompatActivity {
 
 
     int difficulty = 1;
@@ -133,7 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
                 intent.putExtra("difficulty", difficulty);
                 intent.putExtra("theme",theme);
                 startActivity(intent);
