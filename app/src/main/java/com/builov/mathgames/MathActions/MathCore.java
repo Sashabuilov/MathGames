@@ -74,15 +74,21 @@ public class MathCore {
                 this.mathSignInt = mRandom.nextInt(1 + 1);
                 break;
             case 3:
-                this.frist = mRandom.nextInt(5 + 1);
-                this.second = mRandom.nextInt(5 + 1);
-                this.mathSignInt = mRandom.nextInt(3 + 1);
-                break;
-            case 4:
                 this.frist = mRandom.nextInt(10 + 1);
                 this.second = mRandom.nextInt(10 + 1);
                 this.mathSignInt = mRandom.nextInt(3 + 1);
                 break;
+            case 4:
+                this.frist = mRandom.nextInt(20 + 1);
+                this.second = mRandom.nextInt(20 + 1);
+                this.mathSignInt = mRandom.nextInt(3 + 1);
+                break;
+            case 5:
+                this.frist = mRandom.nextInt(9+1);
+                this.second = mRandom.nextInt(9+1);
+                this.mathSignInt = 2;
+                break;
+
         }
     }
 

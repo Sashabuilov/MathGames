@@ -30,10 +30,12 @@ public class StartActivity extends AppCompatActivity {
 
     RadioGroup mRadioGroup;
     RadioGroup mRadioGroup2;
+    RadioGroup mRadioGroup3;
     RadioButton radioButtonEasy;
     RadioButton radioButtonNormal;
     RadioButton radioButtonHard;
     RadioButton radioButtonVeryHard;
+    RadioButton radioButtonMultiplicationTable;
 
     ConstraintLayout mConstraintLayout;
     LinearLayout maintHolder;
@@ -47,7 +49,7 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_start);
         Objects.requireNonNull(getSupportActionBar()).hide();
         initUI();
         initView();
@@ -86,6 +88,8 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty = 1;
                 mRadioGroup2.clearCheck();
+                mRadioGroup3.clearCheck();
+
             }
         });
 
@@ -95,6 +99,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty = 2;
                 mRadioGroup2.clearCheck();
+                mRadioGroup3.clearCheck();
             }
         });
 
@@ -104,6 +109,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty = 3;
                 mRadioGroup.clearCheck();
+                mRadioGroup3.clearCheck();
 
             }
         });
@@ -114,13 +120,27 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 difficulty = 4;
                 mRadioGroup.clearCheck();
+                mRadioGroup3.clearCheck();
             }
         });
+
+        radioButtonMultiplicationTable = findViewById(R.id.rbMultiplicationTable);
+        radioButtonMultiplicationTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                difficulty = 5;
+                mRadioGroup.clearCheck();
+                mRadioGroup2.clearCheck();
+            }
+        });
+
+
 
         mSwitch = findViewById(R.id.switch1);
         mConstraintLayout = findViewById(R.id.configBase);
         mRadioGroup = findViewById(R.id.radioGroup1);
         mRadioGroup2 = findViewById(R.id.radioGroup2);
+        mRadioGroup3 = findViewById(R.id.radioGroup3);
         maintHolder = findViewById(R.id.main_Holder);
         mCardView = findViewById(R.id.cardHolder);
 
@@ -151,6 +171,7 @@ public class StartActivity extends AppCompatActivity {
             radioButtonNormal.setTextColor(Color.WHITE);
             radioButtonHard.setTextColor(Color.WHITE);
             radioButtonVeryHard.setTextColor(Color.WHITE);
+            radioButtonMultiplicationTable.setTextColor(Color.WHITE);
             mButtonOk.setTextColor(Color.WHITE);
             theme = "Black";
         } else {
@@ -163,6 +184,7 @@ public class StartActivity extends AppCompatActivity {
             radioButtonNormal.setTextColor(Color.BLACK);
             radioButtonHard.setTextColor(Color.BLACK);
             radioButtonVeryHard.setTextColor(Color.BLACK);
+            radioButtonMultiplicationTable.setTextColor(Color.BLACK);
             mButtonOk.setTextColor(Color.BLACK);
 
             theme = "White";

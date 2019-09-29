@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tv_Timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="30" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -108,13 +121,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonOK"
+                android:id="@+id/buttonDelete"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="#FFD75E"
-                android:text="OK"
+                android:text="Удалить"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -130,13 +143,13 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/buttonDelete"
+                android:id="@+id/buttonOK"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="#FFD75E"
-                android:text="Удалить"
+                android:text="OK"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 

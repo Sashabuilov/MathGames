@@ -2,6 +2,7 @@ package com.builov.mathgames;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.constraint.ConstraintLayout;
@@ -14,7 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import com.builov.mathgames.MathActions.MathCore;
 import java.util.Objects;
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvVersion;
     TextView tvEquals;
     TextView tvHintTitle;
+    TextView tvTimer;
 
     EditText mEditTextAnswer;
 
@@ -47,10 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private int difficulty;
     private int hintCount;
     private int numberOfCorrectAnswers = 0;
+    private int the_number_of_correct_answers_for_hard_game;
+
     private Thread secondThread;
     private Handler mHandler = new Handler();
     private Boolean reset;
-    MathCore mathCore = new MathCore();
+    private MathCore mathCore = new MathCore();
+    private CountDownTimer mCountDownTimer;
+    private long tempMilliSeconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        String theme = getIntent().getStringExtra("theme");
+        final String theme = getIntent().getStringExtra("theme");
 
-        String VERSION = "0.6";
+        String VERSION = "0.7";
         reset = true;
         initUI();
 
@@ -85,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         difficulty = getIntent().getIntExtra("difficulty", 0);
         mathCore.mathRandomizer(difficulty);
 
+        long timerMilliseconds = 30000;
         switch (difficulty) {
             case 1:
                 hintCount = 10;
@@ -101,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
             case 4:
                 hintCount = 0;
                 tvHintCount.setText("ПОДСКАЗКИ НЕ ДОСТУПНЫ");
+                newTimer(timerMilliseconds);
+                break;
+
+                //таблица умножения
+            case 5:
+                hintCount = 3;
+                tvHintCount.setText(Integer.toString(hintCount));
                 break;
         }
         initMathActions();
@@ -139,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         tvAnswer = findViewById(R.id.tvAnswer);
         tvVersion = findViewById(R.id.tvVersion);
         tvHintCount = findViewById(R.id.tvHintCount);
+        tvTimer=findViewById(R.id.tv_Timer);
 
         mButtonOk = findViewById(R.id.buttonOK);
         mButtonHelp = findViewById(R.id.buttonHelp);
@@ -161,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         tvHintTitle = findViewById(R.id.tvHintTitle);
     }
 
-    //обработка нажатия UI кнопок
+    //обработка кнопок (ОК, УДАЛИТЬ, ПОДСКАЗКА)
     private void initButtonActions() {
 
         //кнопка ОК
@@ -182,12 +196,28 @@ public class MainActivity extends AppCompatActivity {
                         mEditTextAnswer.setText("Правильно");
                         tvAnswer.setText("?");
 
+                        if (difficulty==4){
+                            the_number_of_correct_answers_for_hard_game++;
+                        }
+
                         numberOfCorrectAnswers++;
-                        if (numberOfCorrectAnswers == 5) {
+
+                        //если пользователь ответил несколько раз правильно, он получает бонус
+
+                        if (numberOfCorrectAnswers == 4) {
                             hintCount = hintCount + 1;
                             numberOfCorrectAnswers = 0;
+
+                            if (difficulty==4){
+
+                            mCountDownTimer.cancel();
+                            newTimer(tempMilliSeconds +10000);
+                            }
+
+                            if (difficulty==4){Snackbar.make(v, "ПОДСКАЗКИ +1 || Время + 10сек", Snackbar.LENGTH_SHORT).show();
+                            } else {
                             Snackbar.make(v, "ПОДСКАЗКИ +1", Snackbar.LENGTH_SHORT).show();
-                            tvHintCount.setText(Integer.toString(hintCount));
+                            tvHintCount.setText(Integer.toString(hintCount));}
                         }
 
                         secondThread = new Thread(new Runnable() {
@@ -247,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //обоаботка клика кнопок с цифрами
+    //обработка клика кнопок с цифрами
     private void onNumeralClick(final Button button) {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -294,6 +324,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    //установка черной темы
     public void setBlackTheme() {
         mConstraintLayout.setBackgroundColor(getResources().getColor(R.color.colorMaterialBlack));
         tvFirstMathNumber.setTextColor(Color.WHITE);
@@ -307,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
         tvVersion.setTextColor(Color.WHITE);
     }
 
+    //установка белой темы
     private void setWhiteTheme() {
         mConstraintLayout.setBackgroundColor(Color.WHITE);
         tvFirstMathNumber.setTextColor(Color.BLACK);
@@ -319,4 +351,25 @@ public class MainActivity extends AppCompatActivity {
         tvHintCount.setTextColor(Color.BLACK);
         tvVersion.setTextColor(Color.BLACK);
     }
+
+    // запуск таймера
+    private void newTimer(long miliseconds){
+
+        mCountDownTimer = new CountDownTimer(miliseconds, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                tvTimer.setText(Long.toString(millisUntilFinished / 1000));
+                tempMilliSeconds =millisUntilFinished;
+            }
+
+            public void onFinish() {
+                tvTimer.setText("ИГРА ОКОНЧЕНА");
+                mEditTextAnswer.setText("Правильных ответов: "+Integer.toString(the_number_of_correct_answers_for_hard_game));
+                mButtonOk.setEnabled(false);
+            }
+
+        }.start();
+
+    }
+
 }
