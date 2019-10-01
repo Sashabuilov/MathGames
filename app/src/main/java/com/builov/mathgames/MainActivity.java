@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
         tvVersion.setText("v." + VERSION);
         difficulty = getIntent().getIntExtra("difficulty", 0);
+
+        //запуск новой игры
         startNewGame();
     }
 
