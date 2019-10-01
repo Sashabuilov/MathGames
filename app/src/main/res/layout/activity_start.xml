@@ -49,7 +49,7 @@
             android:textStyle="bold|italic" />
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardHolder"
+            android:id="@+id/CardHolderTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -119,30 +119,36 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <RadioGroup
-                        android:id="@+id/radioGroup3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <RadioButton
-                            android:id="@+id/rbMultiplicationTable"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:text="Таблица умножения"
-                            android:textSize="18sp"
-                            android:textStyle="bold|italic" />
-                    </RadioGroup>
-                </LinearLayout>
-
             </LinearLayout>
 
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/CardHolderBottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/radioGroup3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rbMultiplicationTable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Таблица умножения"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+                </RadioGroup>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
         <LinearLayout

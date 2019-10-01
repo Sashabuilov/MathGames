@@ -40,7 +40,8 @@ public class StartActivity extends AppCompatActivity {
     ConstraintLayout mConstraintLayout;
     LinearLayout maintHolder;
 
-    CardView mCardView;
+    CardView mCardViewTop;
+    CardView mCardViewBottom;
 
     SharedPreferences settings;
 
@@ -134,16 +135,14 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-
-
         mSwitch = findViewById(R.id.switch1);
         mConstraintLayout = findViewById(R.id.configBase);
         mRadioGroup = findViewById(R.id.radioGroup1);
         mRadioGroup2 = findViewById(R.id.radioGroup2);
         mRadioGroup3 = findViewById(R.id.radioGroup3);
         maintHolder = findViewById(R.id.main_Holder);
-        mCardView = findViewById(R.id.cardHolder);
-
+        mCardViewTop = findViewById(R.id.CardHolderTop);
+        mCardViewBottom = findViewById(R.id.CardHolderBottom);
         tvHeader = findViewById(R.id.tvHeader);
     }
 
@@ -166,7 +165,8 @@ public class StartActivity extends AppCompatActivity {
             mSwitch.setTextColor(Color.WHITE);
             tvHeader.setTextColor(Color.WHITE);
             mRadioGroup.setBackgroundColor(getResources().getColor(R.color.colorMaterialBlack));
-            mCardView.setBackgroundColor(getResources().getColor(R.color.colorMaterialBlack));
+            mCardViewTop.setBackgroundColor(getResources().getColor(R.color.colorMaterialBlack));
+            mCardViewBottom.setBackgroundColor(getResources().getColor(R.color.colorMaterialBlack));
             radioButtonEasy.setTextColor(Color.WHITE);
             radioButtonNormal.setTextColor(Color.WHITE);
             radioButtonHard.setTextColor(Color.WHITE);
@@ -179,7 +179,8 @@ public class StartActivity extends AppCompatActivity {
             mSwitch.setTextColor(Color.BLACK);
             tvHeader.setTextColor(Color.BLACK);
             mRadioGroup.setBackgroundColor(Color.WHITE);
-            mCardView.setBackgroundColor(Color.WHITE);
+            mCardViewTop.setBackgroundColor(Color.WHITE);
+            mCardViewBottom.setBackgroundColor(Color.WHITE);
             radioButtonEasy.setTextColor(Color.BLACK);
             radioButtonNormal.setTextColor(Color.BLACK);
             radioButtonHard.setTextColor(Color.BLACK);

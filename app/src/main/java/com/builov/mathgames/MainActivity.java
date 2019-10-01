@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         final String theme = getIntent().getStringExtra("theme");
 
 
-        String VERSION = "0.7.1";
+        String VERSION = "0.7.2";
         reset = true;
         initUI();
 
