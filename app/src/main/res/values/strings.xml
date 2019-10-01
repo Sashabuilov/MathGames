@@ -4,4 +4,5 @@
     <string name="sound">Звук</string>
     <string name="ok">OK</string>
     <string name="letsPlay">СЫГРАЕМ ЕЩЕ РАЗ ?</string>
+    <string name="noHintsAvailable">ПОДСКАЗКИ НЕ ДОСТУПНЫ</string>
 </resources>

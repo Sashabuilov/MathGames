@@ -8,6 +8,14 @@ public class MathCore {
     private int frist;
     private int second;
     private int mathSignInt;
+    private int tempAnswer;
+    private int difficulty;
+    private int hintCount;
+    private int numberOfCorrectAnswers = 0;
+    private int the_number_of_correct_answers_for_hard_game=0;
+    private Boolean newGame=false;
+
+    private Boolean reset;
 
     public static int calculate(int first, int second, int mathSignInt) {
         switch (mathSignInt) {
@@ -59,6 +67,67 @@ public class MathCore {
     public int getMathSignInt() {
         return mathSignInt;
     }
+
+
+
+    public int getTempAnswer() {
+        return tempAnswer;
+    }
+
+    public void setTempAnswer(int tempAnswer) {
+        this.tempAnswer = tempAnswer;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+
+    public int getHintCount() {
+        return hintCount;
+    }
+
+    public void setHintCount(int hintCount) {
+        this.hintCount = hintCount;
+    }
+
+
+    public int getNumberOfCorrectAnswers() {
+        return numberOfCorrectAnswers;
+    }
+
+    public void setNumberOfCorrectAnswers(int numberOfCorrectAnswers) {
+        this.numberOfCorrectAnswers = numberOfCorrectAnswers;
+    }
+
+    public int getThe_number_of_correct_answers_for_hard_game() {
+        return the_number_of_correct_answers_for_hard_game;
+    }
+
+    public void setThe_number_of_correct_answers_for_hard_game(int the_number_of_correct_answers_for_hard_game) {
+        this.the_number_of_correct_answers_for_hard_game = the_number_of_correct_answers_for_hard_game;
+    }
+
+    public Boolean getNewGame() {
+        return newGame;
+    }
+
+    public void setNewGame(Boolean newGame) {
+        this.newGame = newGame;
+    }
+
+    public Boolean getReset() {
+        return reset;
+    }
+
+    public void setReset(Boolean reset) {
+        this.reset = reset;
+    }
+
 
     public void mathRandomizer(int difficulty) {
 
