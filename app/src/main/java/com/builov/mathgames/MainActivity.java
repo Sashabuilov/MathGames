@@ -16,7 +16,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.builov.mathgames.MathActions.MathCore;
+
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -49,11 +52,14 @@ public class MainActivity extends AppCompatActivity {
     private int hintCount;
     private int numberOfCorrectAnswers = 0;
     private int the_number_of_correct_answers_for_hard_game;
+    private Boolean newGame=false;
 
     private Thread secondThread;
     private Handler mHandler = new Handler();
     private Boolean reset;
     private MathCore mathCore = new MathCore();
+
+    //таймер и переменная для сброса таймера, для очень сложного режима
     private CountDownTimer mCountDownTimer;
     private long tempMilliSeconds;
 
@@ -61,13 +67,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //запускаем в фулскрине
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        //прячем экшонбар
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+        //получаем от первой активности тему
         final String theme = getIntent().getStringExtra("theme");
 
-        String VERSION = "0.7";
+
+        String VERSION = "0.7.1";
         reset = true;
         initUI();
 
@@ -88,6 +101,45 @@ public class MainActivity extends AppCompatActivity {
 
         tvVersion.setText("v." + VERSION);
         difficulty = getIntent().getIntExtra("difficulty", 0);
+        startNewGame();
+    }
+
+    //инициализация UI элементов
+    private void initUI() {
+
+        //TextView
+        tvFirstMathNumber = findViewById(R.id.tvFirstNumber);
+        tvSecondMathNumber = findViewById(R.id.tvSecondNumber);
+        tvMathSign = findViewById(R.id.tvMathSign);
+        tvAnswer = findViewById(R.id.tvAnswer);
+        tvVersion = findViewById(R.id.tvVersion);
+        tvHintCount = findViewById(R.id.tvHintCount);
+        tvTimer = findViewById(R.id.tv_Timer);
+
+        //Button
+        mButtonOk = findViewById(R.id.buttonOK);
+        mButtonHelp = findViewById(R.id.buttonHelp);
+        mButtonDelete = findViewById(R.id.buttonDelete);
+        mEditTextAnswer = findViewById(R.id.editText_Answer);
+        btn[0] = findViewById(R.id.btn0);
+        btn[1] = findViewById(R.id.btn1);
+        btn[2] = findViewById(R.id.btn2);
+        btn[3] = findViewById(R.id.btn3);
+        btn[4] = findViewById(R.id.btn4);
+        btn[5] = findViewById(R.id.btn5);
+        btn[6] = findViewById(R.id.btn6);
+        btn[7] = findViewById(R.id.btn7);
+        btn[8] = findViewById(R.id.btn8);
+        btn[9] = findViewById(R.id.btn9);
+
+        //элементы для смены темы
+        mConstraintLayout = findViewById(R.id.main_Activity_Constaint);
+        tvEquals = findViewById(R.id.textView5);
+        tvHintTitle = findViewById(R.id.tvHintTitle);
+    }
+
+    //запуск новой игры
+    private void startNewGame() {
         mathCore.mathRandomizer(difficulty);
 
         long timerMilliseconds = 30000;
@@ -110,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 newTimer(timerMilliseconds);
                 break;
 
-                //таблица умножения
+            //таблица умножения
             case 5:
                 hintCount = 3;
                 tvHintCount.setText(Integer.toString(hintCount));
@@ -118,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
         }
         initMathActions();
         initButtonActions();
+
+
     }
 
     //методы получения чисел
@@ -142,39 +196,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //инициализация UI элементов
-    private void initUI() {
-
-        //"Связывание" UI элементов с обьектами кода
-        tvFirstMathNumber = findViewById(R.id.tvFirstNumber);
-        tvSecondMathNumber = findViewById(R.id.tvSecondNumber);
-        tvMathSign = findViewById(R.id.tvMathSign);
-        tvAnswer = findViewById(R.id.tvAnswer);
-        tvVersion = findViewById(R.id.tvVersion);
-        tvHintCount = findViewById(R.id.tvHintCount);
-        tvTimer=findViewById(R.id.tv_Timer);
-
-        mButtonOk = findViewById(R.id.buttonOK);
-        mButtonHelp = findViewById(R.id.buttonHelp);
-        mButtonDelete = findViewById(R.id.buttonDelete);
-        mEditTextAnswer = findViewById(R.id.editText_Answer);
-        btn[0] = findViewById(R.id.btn0);
-        btn[1] = findViewById(R.id.btn1);
-        btn[2] = findViewById(R.id.btn2);
-        btn[3] = findViewById(R.id.btn3);
-        btn[4] = findViewById(R.id.btn4);
-        btn[5] = findViewById(R.id.btn5);
-        btn[6] = findViewById(R.id.btn6);
-        btn[7] = findViewById(R.id.btn7);
-        btn[8] = findViewById(R.id.btn8);
-        btn[9] = findViewById(R.id.btn9);
-
-        //элементы для смены темы
-        mConstraintLayout = findViewById(R.id.main_Activity_Constaint);
-        tvEquals = findViewById(R.id.textView5);
-        tvHintTitle = findViewById(R.id.tvHintTitle);
-    }
-
     //обработка кнопок (ОК, УДАЛИТЬ, ПОДСКАЗКА)
     private void initButtonActions() {
 
@@ -187,37 +208,46 @@ public class MainActivity extends AppCompatActivity {
                 if (tvAnswer.getText().toString().equals("?")) {
                     Snackbar.make(v, "ВВЕДИТЕ ОТВЕТ", Snackbar.LENGTH_SHORT).show();
                 } else {
+
                     //получаем ответ от вычислений
                     tempAnswer = MathCore.calculate(firstNumber, secondNumber, intMathSign);
+
                     //сверяем ответ от вычислений с тем что ввел юзер
                     int answer = Integer.parseInt(tvAnswer.getText().toString());
+
                     //если ответы равны, значит введен правильный ответ....
                     if (answer == tempAnswer) {
                         mEditTextAnswer.setText("Правильно");
                         tvAnswer.setText("?");
 
-                        if (difficulty==4){
+                        //подсчет правильных ответов для очень сложного режима
+                        if (difficulty == 4) {
                             the_number_of_correct_answers_for_hard_game++;
                         }
 
+                        //подсчет правильных ответов для получения бонусов на всех уровнях сложности
                         numberOfCorrectAnswers++;
 
                         //если пользователь ответил несколько раз правильно, он получает бонус
-
                         if (numberOfCorrectAnswers == 4) {
+
+                            //плюс 1 подсказка....
                             hintCount = hintCount + 1;
                             numberOfCorrectAnswers = 0;
 
-                            if (difficulty==4){
+                            if (difficulty == 4) {
 
-                            mCountDownTimer.cancel();
-                            newTimer(tempMilliSeconds +10000);
+                                mCountDownTimer.cancel();
+                                //.... и плюс 10 секунд на очень сложном режиме
+                                newTimer(tempMilliSeconds + 10000);
                             }
 
-                            if (difficulty==4){Snackbar.make(v, "ПОДСКАЗКИ +1 || Время + 10сек", Snackbar.LENGTH_SHORT).show();
+                            if (difficulty == 4) {
+                                Snackbar.make(v, "ПОДСКАЗКИ +1 || Время + 10сек", Snackbar.LENGTH_SHORT).show();
                             } else {
-                            Snackbar.make(v, "ПОДСКАЗКИ +1", Snackbar.LENGTH_SHORT).show();
-                            tvHintCount.setText(Integer.toString(hintCount));}
+                                Snackbar.make(v, "ПОДСКАЗКИ +1", Snackbar.LENGTH_SHORT).show();
+                                tvHintCount.setText(Integer.toString(hintCount));
+                            }
                         }
 
                         secondThread = new Thread(new Runnable() {
@@ -282,21 +312,31 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int i = Integer.parseInt(button.getText().toString());
-                mEditTextAnswer.setText("Нажмите ОК");
 
-                //проверка на ввод двух и более нулей (запрет ввода)
-                if (tvAnswer.getText().toString().equals("0")) {
-                    tvAnswer.setText(button.getText().toString());
-                } else if (reset) {
-                    tvAnswer.setText("");
-                    tvAnswer.setText(Integer.toString(i));
-                    reset = false;
+                if (newGame) {
+                    enable_disable_Buttons(true);
+                    btn[0].setText("0");
+                    newGame=false;
+                    startNewGame();
                 } else {
-                    if (tvAnswer.length() <= 2) {
-                        tvAnswer.setText(tvAnswer.getText() + button.getText().toString());
+
+
+                    int i = Integer.parseInt(button.getText().toString());
+                    mEditTextAnswer.setText("Нажмите ОК");
+
+                    //проверка на ввод двух и более нулей (запрет ввода)
+                    if (tvAnswer.getText().toString().equals("0")) {
+                        tvAnswer.setText(button.getText().toString());
+                    } else if (reset) {
+                        tvAnswer.setText("");
+                        tvAnswer.setText(Integer.toString(i));
+                        reset = false;
                     } else {
-                        Snackbar.make(v, "СЛИШКОМ БОЛЬШОЕ ЧИСЛО", Snackbar.LENGTH_SHORT).show();
+                        if (tvAnswer.length() <= 2) {
+                            tvAnswer.setText(tvAnswer.getText() + button.getText().toString());
+                        } else {
+                            Snackbar.make(v, "СЛИШКОМ БОЛЬШОЕ ЧИСЛО", Snackbar.LENGTH_SHORT).show();
+                        }
                     }
                 }
 
@@ -352,24 +392,35 @@ public class MainActivity extends AppCompatActivity {
         tvVersion.setTextColor(Color.BLACK);
     }
 
-    // запуск таймера
-    private void newTimer(long miliseconds){
+    //запуск таймера
+    private void newTimer(long miliseconds) {
 
         mCountDownTimer = new CountDownTimer(miliseconds, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(Long.toString(millisUntilFinished / 1000));
-                tempMilliSeconds =millisUntilFinished;
+                tempMilliSeconds = millisUntilFinished;
             }
-
             public void onFinish() {
                 tvTimer.setText("ИГРА ОКОНЧЕНА");
-                mEditTextAnswer.setText("Правильных ответов: "+Integer.toString(the_number_of_correct_answers_for_hard_game));
-                mButtonOk.setEnabled(false);
+                mEditTextAnswer.setText("Правильных ответов: " + Integer.toString(the_number_of_correct_answers_for_hard_game));
+                enable_disable_Buttons(false);
+                btn[0].setEnabled(true);
+                btn[0].setText(R.string.letsPlay);
+                newGame=true;
             }
 
         }.start();
 
     }
 
+    //включение/отключение кнопок
+    private void enable_disable_Buttons(Boolean status) {
+        for (int i = 1; i <= 9; i++) {
+            btn[i].setEnabled(status);
+        }
+        mButtonOk.setEnabled(status);
+        mButtonDelete.setEnabled(status);
+        mButtonHelp.setEnabled(status);
+    }
 }
